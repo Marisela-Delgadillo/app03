@@ -1,5 +1,10 @@
 const baseUrl = 'https://rickandmortyapi.com/api/';
 const characterList = document.getElementById('characters-list');
+const locationList = {
+    name: document.getElementById('location-name'),
+    type: document.getElementById('location-type'),
+    dimension: document.getElementById('location-dimension')
+}
 
 const GetCharacterList = async url =>{
     // fetch(`${baseUrl}${url}`).then(res => console.log(res.json()));
@@ -31,4 +36,29 @@ const GetCharacterList = async url =>{
     //console.log(await imgArray);
 }
 
+const GetLocation = async url =>{
+    const res = await fetch(`${baseUrl}${url}`);
+    const data = await res.json();
+    const {results} = data;
+    console.log(await data.results);
+
+    const locationArray = results.map(location =>{
+         //console.log(location);
+       
+        const{name, type, dimension} = location;
+        locationList.name.innerHTML = name;
+        locationList.type.innerHTML = type;
+        locationList.dimension.innerHTML = dimension;
+        return{locationName: name, locationType: type, locationDimension: dimension};
+     });
+
+     await locationArray.forEach(element => {
+        locationList.name.innerHTML=element.locationName;
+
+     })
+
+
+}
+
 GetCharacterList('character');
+GetLocation('location');
