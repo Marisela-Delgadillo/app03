@@ -5,9 +5,6 @@ const characterHTML = {
     image: document.getElementById('character-img'),
     status: document.getElementById('character-status'),
     type: document.getElementById('character-type')
-
-
-
 }
 
 const GetCharacter = () =>{
